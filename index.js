@@ -14,6 +14,11 @@ app.get("/", (req, res) => {
         res.send(result_1);
       } catch (err) {
         console.log(`Query error message: ${err}`);
+      } finally {
+        if (sql) {
+          console.log("Print finally block statement");
+          sql.release();
+        }
       }
     })
     .catch(async (err) => {
