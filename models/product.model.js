@@ -10,20 +10,39 @@ const Product = function (product) {
 };
 
 Product.getAll = (callback) => {
-  conn
-    .then(async (sql) => {
-      try {
-        const result = await sql.query("select * from products");
-        callback(null, result);
-      } catch (error) {
-        callback(null, error);
-      } finally {
-        sql.release();
-      }
-    })
-    .catch(() => {
-      console.log();
-    });
+  return new Promise((resolve, reject) => {
+    conn
+      .then(async (sql) => {
+        try {
+          const result = await sql.query("select * from products");
+          resolve(result);
+          // callback(null, result);
+        } catch (error) {
+          //   callback(null, error);
+          reject(error);
+        } finally {
+          sql.release();
+        }
+      })
+      .catch(() => {
+        console.log();
+      });
+  });
+  //   conn
+  //     .then(async (sql) => {
+  //       try {
+  //         const result = await sql.query("select * from products");
+  //         return Promise.resolve(result);
+  //         // callback(null, result);
+  //       } catch (error) {
+  //         callback(null, error);
+  //       } finally {
+  //         sql.release();
+  //       }
+  //     })
+  //     .catch(() => {
+  //       console.log();
+  //     });
 };
 
 module.exports = Product;
