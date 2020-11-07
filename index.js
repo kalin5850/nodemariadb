@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-const conn = require("./models/db.js");
+/*
+const conn = require("./database/db.js");
 
 app.get("/", (req, res) => {
   conn
@@ -25,5 +26,7 @@ app.get("/", (req, res) => {
       throw err;
     });
 });
+*/
 
+require("./routes/product.routes.js")(app);
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
