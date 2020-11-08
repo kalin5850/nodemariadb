@@ -9,6 +9,23 @@ const Product = function (product) {
   this.create = product.created;
 };
 
+Product.getOne = (productId) => {
+  return new Promise((resolve, reject) => {
+    conn.then(async (sql) => {
+      try {
+        const result = await sql.query("select * from products where id = ?", [
+          productId,
+        ]);
+        resolve(result);
+      } catch (error) {
+        reject(new Error(error));
+      } finally {
+        sql.release();
+      }
+    });
+  });
+};
+
 Product.getAll = (callback) => {
   return new Promise((resolve, reject) => {
     conn.then(async (sql) => {
