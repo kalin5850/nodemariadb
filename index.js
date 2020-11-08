@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
+const middleware = require("./lib/middleware");
 
 /*
 const conn = require("./database/db.js");
@@ -28,16 +29,11 @@ app.get("/", (req, res) => {
 });
 */
 
-/**
- * middleware
- */
-const requestTime = (req, res, next) => {
-  req.requestTime = Date.now();
-  console.log(req.requestTime);
-  next();
-};
-
-app.use(requestTime);
+app.use([
+  middleware.requestTime,
+  middleware.log,
+  middleware.requireAuthenticatio,
+]);
 
 app.get(
   "/",

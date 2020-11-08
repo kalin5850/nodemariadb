@@ -12,6 +12,7 @@ exports.findOne = (req, res) => {
       productId: req.params.productId,
     });
 
+    // query
     const data = await Product.getOne(req.params.productId);
     JSON.parse(JSON.stringify(data));
     res.send(data);
