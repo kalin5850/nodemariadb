@@ -28,5 +28,33 @@ app.get("/", (req, res) => {
 });
 */
 
+/**
+ * middleware
+ */
+const requestTime = (req, res, next) => {
+  req.requestTime = Date.now();
+  console.log(req.requestTime);
+  next();
+};
+
+app.use(requestTime);
+
+app.get(
+  "/",
+  (req, res, next) => {
+    // res.send({
+    //   message: `this is a testing message at ${req.requestTime}`,
+    // });
+    console.log("this is the first testing message");
+    next();
+  },
+  (req, res, next) => {
+    console.log("this is the second testing message");
+    res.send({
+      message: `this is a testing message at ${req.requestTime}`,
+    });
+  }
+);
+
 require("./routes/product.routes.js")(app);
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
