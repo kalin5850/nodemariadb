@@ -18,7 +18,6 @@ exports.findOne = (req, res) => {
 exports.findAll = (req, res) => {
   (async () => {
     const data = await Product.getAll();
-    console.log("data=========================");
     JSON.parse(JSON.stringify(data));
     res.send(data);
   })().catch((e) => {
