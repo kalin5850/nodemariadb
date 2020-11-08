@@ -33,6 +33,7 @@ app.use([
   middleware.requestTime,
   middleware.log,
   middleware.requireAuthenticatio,
+  express.static("public"),
 ]);
 
 app.get(
