@@ -1,8 +1,17 @@
 const Product = require("../models/product.model.js");
+const Joi = require("joi");
 
 // Retrieve a product from the datatbase
 exports.findOne = (req, res) => {
   (async () => {
+    // validation parameter
+    const schema = Joi.object({
+      productId: Joi.number().integer().positive().required(),
+    });
+    await schema.validateAsync({
+      productId: req.params.productId,
+    });
+
     const data = await Product.getOne(req.params.productId);
     JSON.parse(JSON.stringify(data));
     res.send(data);

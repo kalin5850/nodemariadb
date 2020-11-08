@@ -30,7 +30,7 @@ Product.getAll = (callback) => {
   return new Promise((resolve, reject) => {
     conn.then(async (sql) => {
       try {
-        const result = await sql.query("select * from productsa");
+        const result = await sql.query("select * from products");
         resolve(result);
         // callback(null, result);
       } catch (error) {

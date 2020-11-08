@@ -19,6 +19,7 @@
   "homepage": "https://github.com/kalin5850/nodemariadb#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "joi": "^17.3.0",
     "mariadb": "^2.5.1",
     "nodemon": "^2.0.6"
   }
