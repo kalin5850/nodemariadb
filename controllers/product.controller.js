@@ -4,10 +4,15 @@ const Product = require("../models/product.model.js");
 exports.findAll = (req, res) => {
   (async () => {
     const data = await Product.getAll();
-    // console.log(data);
+    console.log("data=========================");
     JSON.parse(JSON.stringify(data));
     res.send(data);
-  })();
+  })().catch((e) => {
+    console.error(e);
+    res.status(500).send({
+      message: e.message,
+    });
+  });
 
   //   Product.getAll((err, data) => {
   //     if (err)
