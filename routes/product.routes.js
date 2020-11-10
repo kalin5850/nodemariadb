@@ -1,9 +1,11 @@
-module.exports = (app) => {
-  const products = require("../controllers/product.controller.js");
+const express = require("express");
+const router = express.Router();
+const products = require("../controllers/product.controller.js");
 
-  // Retrieve all Products
-  app.get("/api/v1/products", products.findAll);
+// Retrieve all Products
+router.get("/", products.findAll);
 
-  // Retrieve a single Customer with customerId
-  app.get("/api/v1/products/:productId", products.findOne);
-};
+// Retrieve a single Customer with customerId
+router.get("/:productId", products.findOne);
+
+module.exports = router;

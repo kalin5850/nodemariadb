@@ -4,6 +4,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const middleware = require("./lib/middleware");
 const morgan = require("morgan");
+const products = require("./routes/product.routes");
 
 /*
 const conn = require("./database/db.js");
@@ -45,6 +46,7 @@ app.use([
   express.static("public"),
   morgan("tiny"),
 ]);
+app.use("/api/v1/products", products);
 
 app.get(
   "/",
@@ -63,5 +65,4 @@ app.get(
   }
 );
 
-require("./routes/product.routes.js")(app);
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
