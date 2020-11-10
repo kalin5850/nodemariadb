@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 const middleware = require("./lib/middleware");
+const morgan = require("morgan");
 
 /*
 const conn = require("./database/db.js");
@@ -34,6 +35,7 @@ app.use([
   middleware.log,
   middleware.requireAuthenticatio,
   express.static("public"),
+  morgan("tiny"),
 ]);
 
 app.get(
