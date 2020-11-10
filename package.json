@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/kalin5850/nodemariadb#readme",
   "dependencies": {
+    "config": "^3.3.2",
     "express": "^4.17.1",
     "joi": "^17.3.0",
     "mariadb": "^2.5.1",

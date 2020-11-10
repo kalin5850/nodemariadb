@@ -1,3 +1,4 @@
+const CONFIG = require("config");
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
@@ -29,6 +30,13 @@ app.get("/", (req, res) => {
     });
 });
 */
+
+/** get env variables **/
+console.log(app.get("env"));
+
+/** get env variables using config package **/
+console.log(CONFIG.get("name"));
+console.log(CONFIG.get("mail.host"));
 
 app.use([
   middleware.requestTime,
