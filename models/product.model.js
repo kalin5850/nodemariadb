@@ -58,4 +58,21 @@ Product.getAll = (callback) => {
   //     });
 };
 
+Product.deleteOne = (productId) => {
+  return new Promise((resolve, reject) => {
+    conn.then(async (sql) => {
+      try {
+        const result = await sql.query("delete from products where id = ?", [
+          productId,
+        ]);
+        resolve(result);
+      } catch (error) {
+        reject(error);
+      } finally {
+        sql.release();
+      }
+    });
+  });
+};
+
 module.exports = Product;

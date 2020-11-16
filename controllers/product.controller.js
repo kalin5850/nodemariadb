@@ -1,6 +1,29 @@
 const Product = require("../models/product.model.js");
 const Joi = require("joi");
 
+// Remove a product from the database
+exports.remove = (req, res) => {
+  (async () => {
+    // validation parameter
+    const schema = Joi.object({
+      productId: Joi.number().integer().positive().required(),
+    });
+    await schema.validateAsync({
+      productId: req.params.productId,
+    });
+
+    // delete
+    const data = await Product.deleteOne(req.params.productId);
+    JSON.parse(JSON.stringify(data));
+    res.send(data);
+  })().catch((e) => {
+    console.error(e);
+    res.status(500).send({
+      message: e.message,
+    });
+  });
+};
+
 // Retrieve a product from the datatbase
 exports.findOne = (req, res) => {
   (async () => {
